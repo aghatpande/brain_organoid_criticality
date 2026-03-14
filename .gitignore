@@ -1,25 +1,37 @@
 # Byte-compiled / cache
 __pycache__/
 *.py[cod]
+*$py.class
 
 # Packaging
 *.egg-info/
 build/
 dist/
+pip-wheel-metadata/
 
 # Virtual environments
 .venv/
 venv/
 env/
 
-# Testing
+# Testing / coverage
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
+
+# Type-check / lint / automation caches
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# OS/editor clutter
+# OS / editor clutter
 .DS_Store
 .vscode/
+
+# Local Python version file (uncomment if you do not want to share pyenv pinning)
+# .python-version
