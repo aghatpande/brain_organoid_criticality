@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: brain-organoid-criticality
+Version: 0.1.0
+Summary: Open, reproducible tools for analyzing critical-like dynamics in brain organoid electrophysiology
+Author: Ambarish Ghatpande
+License: Apache-2.0
+Keywords: neuroscience,brain organoids,criticality,electrophysiology,spike sorting
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
 # brain_organoid_criticality
 benchmarking organoid eephys data for criticality
 

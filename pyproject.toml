@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-organoid-criticality"
+version = "0.1.0"
+description = "Open, reproducible tools for analyzing critical-like dynamics in brain organoid electrophysiology"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Ambarish Ghatpande" }
+]
+keywords = [
+  "neuroscience",
+  "brain organoids",
+  "criticality",
+  "electrophysiology",
+  "spike sorting"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
