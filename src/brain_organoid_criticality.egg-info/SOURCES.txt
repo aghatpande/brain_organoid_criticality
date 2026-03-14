@@ -1,8 +1,0 @@
-LICENSE
-README.md
-pyproject.toml
-src/brain_organoid_criticality/__init__.py
-src/brain_organoid_criticality.egg-info/PKG-INFO
-src/brain_organoid_criticality.egg-info/SOURCES.txt
-src/brain_organoid_criticality.egg-info/dependency_links.txt
-src/brain_organoid_criticality.egg-info/top_level.txt
