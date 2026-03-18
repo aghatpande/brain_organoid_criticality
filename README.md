@@ -49,7 +49,7 @@ pip install -e .
 
 ## Contributing
 
-Contributions, suggestions, and issue reports are welcome. Formal contribution guidelines will be added as the project matures.
+Contributions, suggestions, and issue reports are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the repository layout, recommended workflow, code style, and outstanding areas of work.
 
 ## License
 This project is licensed under the Apache License 2.0.
