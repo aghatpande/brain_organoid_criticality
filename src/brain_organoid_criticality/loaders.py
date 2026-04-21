@@ -215,7 +215,7 @@ def _collect_electrical_series_refs(
     _, electrical_series_type = _require_pynwb()
     refs: list[ElectricalSeriesRef] = []
 
-    for obj in nwbfile.objects.values():
+    for obj in nwbfile.acquisition.values():
         if not isinstance(obj, electrical_series_type):
             continue
 
@@ -238,7 +238,7 @@ def _collect_electrical_series_refs(
 def _get_electrical_series_by_name(nwbfile: Any, series_name: str) -> Any:
     _, electrical_series_type = _require_pynwb()
 
-    for obj in nwbfile.objects.values():
+    for obj in nwbfile.acquisition.values():
         if isinstance(obj, electrical_series_type) and obj.name == series_name:
             return obj
 
@@ -264,17 +264,7 @@ def _estimate_duration_seconds(
         if primary.n_samples is not None and primary.sampling_rate_hz:
             return primary.n_samples / primary.sampling_rate_hz
 
-    units = getattr(nwbfile, "units", None)
-    if units is None:
-        return None
-
-    latest_spike = 0.0
-    for index in range(len(units.id)):
-        spike_times = np.asarray(units["spike_times"][index], dtype=float)
-        if spike_times.size:
-            latest_spike = max(latest_spike, float(spike_times.max()))
-
-    return latest_spike or None
+    return None
 
 
 def _coerce_float(value: Any) -> float | None:
