@@ -26,7 +26,10 @@ classifiers = [
   "Intended Audience :: Science/Research",
   "Topic :: Scientific/Engineering :: Bio-Informatics"
 ]
-dependencies = []
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+nwb = ["pynwb"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
