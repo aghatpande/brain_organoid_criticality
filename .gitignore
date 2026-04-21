@@ -35,3 +35,7 @@ htmlcov/
 
 # Local Python version file (uncomment if you do not want to share pyenv pinning)
 # .python-version
+
+# Local handoff notes
+session_stop_note.md
+next_session_prompt.md
