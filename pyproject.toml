@@ -30,6 +30,12 @@ dependencies = ["numpy"]
 
 [project.optional-dependencies]
 nwb = ["pynwb"]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "ruff",
+  "mypy",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -37,3 +43,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
