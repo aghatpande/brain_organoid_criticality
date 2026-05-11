@@ -6,11 +6,20 @@ Open, reproducible tools for benchmarking and measuring critical-like dynamics i
 
 ## Status
 
-Early-stage project scaffold. The goal is to build an end-to-end open-source workflow for:
+Early-stage project with an initial NWB ingestion and spike-time utility layer
+in place. The goal is to build an end-to-end open-source workflow for:
 - ingesting spike-sorted and/or electrode-level neural recordings
 - computing candidate criticality metrics
 - benchmarking data sufficiency and quality for those metrics
 - generating reproducible figures, reports, and notebooks
+
+Current capabilities include:
+- inspecting local NWB files for session metadata, acquisition names, processing modules, and units-table presence
+- listing and reading chunks from acquisition-level NWB `ElectricalSeries` objects
+- loading NWB `units` spike times into a package-level `SortedSpikes` container
+- flattening spike times across units for population-level analysis
+- basic spike-time binning for downstream avalanche-style analyses
+- validation of the units-based path on one real DANDI asset from Dandiset `000022`
 
 ## Planned scope
 
@@ -40,6 +49,23 @@ Clone the repository and install in editable mode:
 git clone https://github.com/YOUR_USERNAME/brain_organoid_criticality.git
 cd brain_organoid_criticality
 pip install -e .
+```
+
+For development:
+```bash
+pip install -e ".[dev]"
+```
+
+For development with NWB support:
+```bash
+pip install -e ".[dev,nwb]"
+```
+
+Run the current checks with:
+```bash
+pytest
+ruff check src/ tests/
+mypy src/
 ```
 ## Development goals
 •	build reusable, documented analysis functions

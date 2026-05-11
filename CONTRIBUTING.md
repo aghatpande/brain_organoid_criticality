@@ -30,7 +30,12 @@ The long-term goal is an end-to-end workflow that:
 - benchmarks data sufficiency and quality for those metrics
 - generates reproducible figures, reports, and notebooks
 
-The project is in its **early scaffold stage**: directory structure and packaging are established, but most analysis modules are yet to be implemented. This makes it an ideal time to get involved and shape the design from the ground up.
+The project is still early, but the first NWB ingestion and spike-time utility
+layer is in place. Current code can inspect local NWB files, discover
+acquisition-level `ElectricalSeries` objects, read electrical data chunks, load
+NWB `units` spike times into a `SortedSpikes` container, and run basic
+population spike binning. Most criticality analyses are still planned, so this
+is still a good time to shape the design from the ground up.
 
 ---
 
@@ -40,6 +45,11 @@ The project is in its **early scaffold stage**: directory structure and packagin
 brain_organoid_criticality/
 ├── src/
 │   └── brain_organoid_criticality/   # Installable Python package
+│       ├── avalanches.py             # Spike binning and future avalanche analysis
+│       ├── io.py                     # Path validation and I/O helpers
+│       ├── loaders.py                # NWB inspection and electrical-series loading
+│       ├── models.py                 # Shared dataclasses
+│       ├── spikes.py                 # Spike-time loading and validation
 │       └── __init__.py
 ├── tests/                            # pytest test suite
 │   └── __init__.py
@@ -89,16 +99,12 @@ cd brain_organoid_criticality
 python -m venv .venv
 source .venv/bin/activate        # On Windows: .venv\Scripts\activate
 
-# 3. Install the package in editable mode with optional dev dependencies
-pip install -e ".[dev]"          # once [dev] extras are defined in pyproject.toml
-# Until then, install the package itself:
-pip install -e .
+# 3. Install the package in editable mode with development tools
+pip install -e ".[dev]"
 
-# 4. (Optional) Install recommended development tools
-pip install ruff mypy pytest pytest-cov
+# 4. For NWB loader work, include NWB support as well
+pip install -e ".[dev,nwb]"
 ```
-
-> **Note:** As the project matures, a `[project.optional-dependencies]` section will be added to `pyproject.toml` to capture all development dependencies in one place. Until then, install tools individually as shown above.
 
 ---
 
@@ -186,10 +192,10 @@ We use [pytest](https://docs.pytest.org/).
 
 ```bash
 # Run the full test suite
-pytest tests/
+pytest
 
 # Run with coverage report
-pytest --cov=brain_organoid_criticality --cov-report=term-missing tests/
+pytest --cov=brain_organoid_criticality --cov-report=term-missing
 ```
 
 ### What to test
@@ -206,17 +212,18 @@ The following areas are open for contribution. If you intend to work on one, ple
 
 ### High priority
 
-- [ ] **Data ingestion module** — readers for common eephys formats (NWB, MCS `.h5`, binary + header pairs). Start with a `loaders.py` module under `src/brain_organoid_criticality/`.
-- [ ] **Spike-train utilities** — binning, inter-spike interval computation, population rate vectors. Add a `spikes.py` module.
-- [ ] **Test infrastructure** — add `pytest` configuration (`pyproject.toml` `[tool.pytest.ini_options]` section), a `conftest.py` with shared fixtures, and a first set of smoke tests.
 - [ ] **CI/CD pipeline** — add a GitHub Actions workflow (`.github/workflows/ci.yml`) to run linting and tests automatically on each pull request.
+- [ ] **Shared test fixtures** — add a `tests/conftest.py` with reusable synthetic spike and NWB fixtures.
+- [ ] **Remote NWB access** — add an optional LINDI-backed path for inspecting remote DANDI NWB assets without downloading full files first.
+- [ ] **Data ingestion expansion** — extend beyond the initial NWB layer toward common eephys formats such as MCS `.h5` and binary + header pairs.
 
 ### Medium priority
 
+- [ ] **Spike-train utilities** — add inter-spike interval computation, richer population rate vectors, and edge-case coverage beyond the current basics.
 - [ ] **Avalanche analysis** — implement neuronal avalanche detection (threshold crossings → avalanche catalogues), size and duration distributions, power-law fitting.
 - [ ] **Criticality metrics** — branching ratio estimation, distance-from-criticality (DCC) measures, autocorrelation / Debye-Waller factor.
 - [ ] **Benchmark notebooks** — Jupyter notebooks demonstrating the full analysis pipeline on a public dataset.
-- [ ] **pyproject.toml dev extras** — define a `[project.optional-dependencies]` section (`dev`, `notebooks`) and lock versions.
+- [ ] **Notebook dependencies** — define a future `notebooks` optional dependency group when notebook workflows mature.
 
 ### Lower priority / nice-to-have
 
