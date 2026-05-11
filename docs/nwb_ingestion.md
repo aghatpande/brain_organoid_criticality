@@ -85,6 +85,47 @@ not pass around raw `NWBFile` objects. Instead:
 This keeps the project adaptable as additional loaders, manifest formats, and
 sorting backends are added.
 
+## Real DANDI Validation
+
+The local-file ingestion path has been validated against one real DANDI NWB
+asset:
+
+- Dandiset: `000022`
+- Version: `0.251116.2247`
+- Asset path: `sub-744912845/sub-744912845_ses-766640955.nwb`
+- Asset ID: `ac4bfefc-d259-4d13-a083-89df1f9044b9`
+
+The asset was downloaded locally and inspected with `scripts/inspect_nwb.py`.
+The current loader successfully extracted session metadata and detected the
+NWB `units` table:
+
+- `session_id='766640955'`
+- `subject_id='744912845'`
+- `has_units=True`
+- `has_raw_electrical_series=False`
+
+This file does not expose raw extracellular `ElectricalSeries` objects in
+`acquisition`; the acquisition entries are running-wheel signals. That means
+raw-trace discovery remains layout-dependent, but the units-based path works on
+this real public asset.
+
+A minimal downstream spike pipeline also succeeded:
+
+```python
+spikes = load_units_from_nwb(path)
+population_spikes = flatten_spike_times(spikes)
+counts, edges = bin_spike_times(population_spikes, bin_size=0.01)
+```
+
+Observed output:
+
+- `n_units: 2890`
+- `t_start_s: 0.0`
+- `t_stop_s: 9807.04919153599`
+- `n_population_spikes: 124754105`
+- `n_bins: 980334`
+- `first_10_counts: [40 37 60 77 97 68 52 44 50 40]`
+
 ## What This Layer Does Not Do Yet
 
 The current implementation does not yet provide:
@@ -136,5 +177,3 @@ The next tasks for this layer should be:
   selection logic
 - add tests covering units-only files, raw-only files, and multi-series files
 - add a future `sorting.py` adapter layer for external spike-sorting pipelines
-- validate this API against one real DANDI dataset such as Allen Visual Coding
-  or OpenScope
