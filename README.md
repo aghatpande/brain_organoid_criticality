@@ -37,7 +37,7 @@ Initial focus areas include:
 src/        Python package source code
 tests/      Unit and integration tests
 notebooks/  Exploratory and tutorial notebooks
-docs/       Project documentation and roadmap
+docs/       Project documentation; roadmap tracked in GitHub milestones/issues
 scripts/    Command-line or utility scripts
 data/       Data manifests and lightweight metadata only
 results/    Generated outputs and summaries

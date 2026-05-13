@@ -18,7 +18,7 @@ src/brain_organoid_criticality/  — Main Python package
 
 tests/                            — pytest test suite (minimal coverage currently)
 notebooks/                        — Exploratory and tutorial Jupyter notebooks
-docs/                             — Project documentation (roadmap.md)
+docs/                             — Project documentation; active roadmap is tracked in GitHub milestones/issues
 data/                             — Metadata and manifests only (no raw data)
 results/                          — Generated outputs (.gitignore'd)
 scripts/                          — CLI or utility scripts (empty)

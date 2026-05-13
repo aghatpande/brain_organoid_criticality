@@ -54,8 +54,7 @@ brain_organoid_criticality/
 ├── tests/                            # pytest test suite
 │   └── __init__.py
 ├── notebooks/                        # Exploratory and tutorial Jupyter notebooks
-├── docs/                             # Project documentation and roadmap
-│   └── roadmap.md
+├── docs/                             # Project documentation
 ├── data/                             # Data manifests and lightweight metadata only
 │   └── README.md                     # Instructions on data organisation
 ├── results/                          # Generated outputs and summaries (not tracked)
@@ -74,7 +73,7 @@ brain_organoid_criticality/
 | `src/brain_organoid_criticality/` | All importable Python modules live here. Keep modules focused (one responsibility per module). |
 | `tests/` | Mirror the `src/` layout with `test_<module>.py` files. Every new function should have a corresponding test. |
 | `notebooks/` | Exploratory notebooks are welcome; keep them self-contained and annotated. Avoid committing large output cells. |
-| `docs/` | Narrative documentation and the project roadmap. |
+| `docs/` | Narrative documentation. The active roadmap is tracked through GitHub milestones and issues. |
 | `data/` | Commit only manifests, checksums, or lightweight metadata — **never raw data files**. |
 | `results/` | Generated figures and reports. This directory is listed in `.gitignore` to avoid accidental commits of large binary outputs. |
 
@@ -227,7 +226,6 @@ The following areas are open for contribution. If you intend to work on one, ple
 
 ### Lower priority / nice-to-have
 
-- [ ] **Roadmap** (`docs/roadmap.md`) — fill in planned milestones and timeline.
 - [ ] **Changelog** (`CHANGELOG.md`) — adopt [Keep a Changelog](https://keepachangelog.com/) format.
 - [ ] **Data README** (`data/README.md`) — document expected data formats and sources.
 - [ ] **Results README** (`results/README.md`) — document how results are organised and regenerated.
