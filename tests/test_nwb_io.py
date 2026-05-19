@@ -22,22 +22,19 @@ NWBFile = pynwb.NWBFile
 NWBHDF5IO = pynwb.NWBHDF5IO
 
 
-def test_inspect_nwb_and_load_units(tmp_path) -> None:
-    nwb_path = tmp_path / "example.nwb"
-    _write_test_nwb(nwb_path)
-
-    summary = inspect_nwb(nwb_path)
-    electrical_series = list_electrical_series(nwb_path)
-    selected_series = get_electrical_series_ref(nwb_path, "ElectricalSeries")
-    chunk = read_electrical_series_chunk(nwb_path, start=1, stop=4)
-    spikes = load_units_from_nwb(nwb_path)
+def test_inspect_nwb_and_load_units(synthetic_nwb_path) -> None:
+    summary = inspect_nwb(synthetic_nwb_path)
+    electrical_series = list_electrical_series(synthetic_nwb_path)
+    selected_series = get_electrical_series_ref(synthetic_nwb_path, "ElectricalSeries")
+    chunk = read_electrical_series_chunk(synthetic_nwb_path, start=1, stop=4)
+    spikes = load_units_from_nwb(synthetic_nwb_path)
 
     assert summary.has_raw_electrical_series is True
     assert summary.has_units is True
     assert summary.sampling_rate_hz == pytest.approx(1000.0)
     assert summary.n_channels == 2
     assert summary.duration_s == pytest.approx(0.01)
-    assert has_units_table(nwb_path) is True
+    assert has_units_table(synthetic_nwb_path) is True
 
     assert len(electrical_series) == 1
     assert selected_series.series_name == "ElectricalSeries"
