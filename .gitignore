@@ -39,3 +39,5 @@ htmlcov/
 # Local handoff notes
 session_stop_note.md
 next_session_prompt.md
+MVP_SPEC.md
+user_stories.md
