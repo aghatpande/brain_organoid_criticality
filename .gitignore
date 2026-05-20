@@ -37,7 +37,8 @@ htmlcov/
 # .python-version
 
 # Local handoff notes
-session_stop_note.md
+CLAUDE.md
+docs/proposal.md
 next_session_prompt.md
 MVP_SPEC.md
 user_stories.md
