@@ -36,8 +36,5 @@ htmlcov/
 # Local Python version file (uncomment if you do not want to share pyenv pinning)
 # .python-version
 
-# Local handoff notes
-CLAUDE.md
-docs/proposal.md
+# Local session scratchpad
 SCRATCHPAD.md
-MVP_SPEC.md
