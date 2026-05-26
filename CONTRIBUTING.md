@@ -207,28 +207,28 @@ pytest --cov=brain_organoid_criticality --cov-report=term-missing
 
 ## 7. Outstanding issues and planned work
 
-The following areas are open for contribution. If you intend to work on one, please open a GitHub issue first so we can coordinate.
+The comprehensive roadmap lives in `PRD.md` §9 (phased delivery) and the active Phase 1 detail spec is in `MVP_SPEC.md` (gitignored local planning doc). The open contribution areas are summarised below. If you intend to work on one, please open a GitHub issue first so we can coordinate.
 
 ### High priority
 
-- [ ] **CI/CD pipeline** — add a GitHub Actions workflow (`.github/workflows/ci.yml`) to run linting and tests automatically on each pull request.
-- [ ] **Shared test fixtures** — add a `tests/conftest.py` with reusable synthetic spike and NWB fixtures.
-- [ ] **Remote NWB access** — add an optional LINDI-backed path for inspecting remote DANDI NWB assets without downloading full files first.
-- [ ] **Data ingestion expansion** — extend beyond the initial NWB layer toward common eephys formats such as MCS `.h5` and binary + header pairs.
+- [ ] **Phase 1 metric MVP** (`quality.py`, `metrics.py`) — `check_sufficiency()` returning a `SufficiencyReport`, the MR-estimator branching ratio, and `distance_to_criticality()` with bootstrap CIs. Pinned signatures live in `MVP_SPEC.md` §2.2.
+- [ ] **Remote NWB access** — optional LINDI-backed path for inspecting remote DANDI assets without downloading full files first. (issue #20)
+- [ ] **First tutorial notebook** — synthetic primary example plus a bounded DANDI:000022 slice; end-to-end in under 5 minutes.
 
 ### Medium priority
 
-- [ ] **Spike-train utilities** — add inter-spike interval computation, richer population rate vectors, and edge-case coverage beyond the current basics.
-- [ ] **Avalanche analysis** — implement neuronal avalanche detection (threshold crossings → avalanche catalogues), size and duration distributions, power-law fitting.
-- [ ] **Criticality metrics** — branching ratio estimation, distance-from-criticality (DCC) measures, autocorrelation / Debye-Waller factor.
-- [ ] **Benchmark notebooks** — Jupyter notebooks demonstrating the full analysis pipeline on a public dataset.
-- [ ] **Notebook dependencies** — define a future `notebooks` optional dependency group when notebook workflows mature.
+- [ ] **Avalanche analysis (Phase 2)** — threshold-crossing detection → avalanche catalogues, size / duration power-law fitting, shape collapse.
+- [ ] **LRTC and susceptibility (Phase 2)** — detrended fluctuation analysis and the susceptibility / Debye-Waller factor.
+- [ ] **Renormalization-group distance measures (Phase 2)** — AR(n) fit, the d2 metric, and the KL-rate (Sooter, Fontenele, et al. 2025). See `PRD.md` §3.3.
+- [ ] **Spike-train utilities** — inter-spike intervals, richer population rate vectors, and edge-case coverage beyond the current basics.
+- [ ] **Additional data loaders** — MCS `.h5` and raw binary + header pairs, beyond the shipped NWB layer.
+- [ ] **Perturbation benchmark engine (Phase 3)** — `benchmark.py`: parameterised harness sweeping duration / units / channels / subsampling / bin size to produce per-dataset stability mappings.
 
 ### Lower priority / nice-to-have
 
-- [ ] **Changelog** (`CHANGELOG.md`) — adopt [Keep a Changelog](https://keepachangelog.com/) format.
-- [ ] **Data README** (`data/README.md`) — document expected data formats and sources.
-- [ ] **Results README** (`results/README.md`) — document how results are organised and regenerated.
+- [ ] **Notebook dependency group** — define a future `notebooks` optional dependency group when notebook workflows mature.
+- [ ] **Data README** (`data/README.md`) — document expected data formats and sources (file exists but is empty).
+- [ ] **Results README** (`results/README.md`) — document how results are organised and regenerated (file exists but is empty).
 - [ ] **Documentation site** — set up [MkDocs](https://www.mkdocs.org/) or [Sphinx](https://www.sphinx-doc.org/) for API documentation.
 - [ ] **Pre-commit hooks** — add a `.pre-commit-config.yaml` to enforce style checks automatically.
 
