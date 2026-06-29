@@ -7,7 +7,13 @@ from .loaders import (
     list_electrical_series,
     read_electrical_series_chunk,
 )
-from .models import ElectricalSeriesRef, RecordingSummary, SortedSpikes
+from .models import (
+    ElectricalSeriesRef,
+    RecordingSummary,
+    SortedSpikes,
+    SufficiencyReport,
+)
+from .quality import check_sufficiency
 from .spikes import flatten_spike_times, load_units_from_nwb, validate_sorted_spikes
 
 __version__ = "0.1.0"
@@ -16,8 +22,10 @@ __all__ = [
     "ElectricalSeriesRef",
     "RecordingSummary",
     "SortedSpikes",
+    "SufficiencyReport",
     "__version__",
     "bin_spike_times",
+    "check_sufficiency",
     "flatten_spike_times",
     "get_electrical_series_ref",
     "has_units_table",

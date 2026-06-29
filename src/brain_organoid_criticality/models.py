@@ -47,3 +47,43 @@ class SortedSpikes:
     t_start_s: float
     t_stop_s: float
     metadata: dict[str, object] = field(default_factory=dict)
+
+
+@dataclass(slots=True)
+class SufficiencyReport:
+    """Data-sufficiency descriptors and verdict for a recording.
+
+    Produced by :func:`brain_organoid_criticality.quality.check_sufficiency`.
+    ``passes`` is ``False`` whenever any descriptor falls below a hard
+    threshold; ``warnings`` collects advisory issues that do not by themselves
+    block a metric estimate, while ``failures`` collects threshold violations
+    that do.
+
+    Attributes
+    ----------
+    passes : bool
+        ``True`` only when ``failures`` is empty.
+    n_units : int
+        Number of units in the recording.
+    n_spikes : int
+        Total number of spikes summed across all units.
+    duration_s : float
+        Recording duration in seconds (``t_stop_s - t_start_s``).
+    mean_firing_rate_hz : float
+        Mean per-unit firing rate in hertz.
+    n_bins_at_default : int
+        Number of bins the recording yields at the assessed bin size.
+    warnings : list of str
+        Advisory messages naming both the observed value and the bound.
+    failures : list of str
+        Hard-threshold violations naming both the observed value and the bound.
+    """
+
+    passes: bool
+    n_units: int
+    n_spikes: int
+    duration_s: float
+    mean_firing_rate_hz: float
+    n_bins_at_default: int
+    warnings: list[str] = field(default_factory=list)
+    failures: list[str] = field(default_factory=list)
