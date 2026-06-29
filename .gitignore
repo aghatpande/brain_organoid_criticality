@@ -36,5 +36,6 @@ htmlcov/
 # Local Python version file (uncomment if you do not want to share pyenv pinning)
 # .python-version
 
-# Local session scratchpad
+# Local-only personal working files
 SCRATCHPAD.md
+project_workflow_recap.md
