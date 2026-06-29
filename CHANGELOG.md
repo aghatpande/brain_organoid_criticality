@@ -4,6 +4,10 @@
 
 ### Added
 
+- Added `check_sufficiency()` (in `quality.py`) returning a `SufficiencyReport` that scores a recording's unit count, duration, mean firing rate, and bin count against configurable thresholds, accumulating human-readable warnings and failures.
+- Added `branching_ratio()` (in `metrics.py`), the Wilting & Priesemann multistep-regression estimator of the branching ratio sigma, robust to spatial subsampling.
+- Added `distance_to_criticality()` (in `metrics.py`) computing `DCC = 1 - sigma` with a moving-block bootstrap confidence interval, refusing a point estimate when data sufficiency fails.
+- Added the `SufficiencyReport`, `BranchingRatioEstimate`, and `DCCResult` data models, exported from the package public API.
 - Added pytest configuration so the test suite runs from the repository root.
 - Added a `dev` optional dependency group with pytest, pytest-cov, Ruff, and mypy.
 - Added mypy configuration for the current source tree and untyped third-party imports.
